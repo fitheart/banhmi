@@ -1,0 +1,61 @@
+{% extends 'bread/base.html' %}
+{% load staticfiles %}
+{% block body %}
+<h1>DJANGO</h1>
+
+<div>
+  <label>Name:</label>
+  <input type="text" ng-model="yourName" placeholder="Enter a name here">
+  <hr>
+  <h1>Hello {{yourName}}!</h1>
+</div>
+<a href="#" class="btn btn-info" role="button">Link Button</a>
+<button type="button" class="btn btn-info">Button</button>
+<input type="button" class="btn btn-info" value="Input Button">
+<input type="submit" class="btn btn-info" value="Submit Button">
+
+<nav>
+  <ul class="nav nav-pills pull-right">
+    <li role="presentation" class="active"><a href="#">Home</a></li>
+    <li role="presentation"><a href="#">About</a></li>
+    <li role="presentation"><a href="#">Contact</a></li>
+  </ul>
+</nav>
+<h3 class="text-muted">Project name</h3>
+    
+
+<h2>Todo</h2>
+    <div ng-controller="TodoListController as todoList">
+     
+      <a href="" ng-click="todoList.archive()">archive</a>
+      <ul class="unstyled">
+        <li ng-repeat="todo in todoList.todos">
+          <label class="checkbox">
+            <input type="checkbox" ng-model="todo.done">
+            <span class="done-{{todo.done}}">{{todo.text}}</span>
+          </label>
+        </li>
+      </ul>
+      <form ng-submit="todoList.addTodo()">
+        <input type="text" ng-model="todoList.todoText"  size="30"
+               placeholder="add new todo here">
+        <input class="btn-primary" type="submit" value="add">
+      </form>
+    </div>
+
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    $scope.names = ["Emil", "Tobias", "Linus"];
+});
+</script>
+<div ng-app="myApp" ng-controller="myCtrl">
+<select>
+<option ng-repeat="x in names">{{x}}</option>
+</select>
+
+</div>
+
+
+{% endblock %}
